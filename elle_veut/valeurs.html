@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Nos Valeurs - Groupe La Passerelle</title>
+    <meta name="description" content="Découvrez les valeurs qui animent Groupe La Passerelle : Excellence, Innovation, Confiance, Engagement et Collaboration">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <style>
+        /* Reset & Base */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Light mode (default) */
+        
+        body.light-mode {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        body.light-mode .header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-mode footer {
+            background-color: #2c3e50;
+            color: #fff;
+        }
+        
+        body.light-mode .card,
+        body.light-mode .valeur-card,
+        body.light-mode .engagement-card,
+        body.light-mode .testimonial-card {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-mode .social a img {
+            filter: brightness(0) invert(1);
+        }
+        
+        body.light-mode .stat-number {
+            color: #ff7f3f;
+        }
+        
+        body.light-mode .badge {
+            background-color: #ff7f3f;
+            color: #fff;
+        }
+        /* Dark mode */
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .header {
+            background-color: #2d2d2d;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.dark-mode footer {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.dark-mode .card,
+        body.dark-mode .valeur-card,
+        body.dark-mode .engagement-card,
+        body.dark-mode .testimonial-card {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .navbar ul li a {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .navbar ul li a:hover,
+        body.dark-mode .navbar ul li a.active {
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .submenu {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark-mode .submenu li a {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .submenu li a:hover {
+            background-color: #3d3d3d;
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .social a img {
+            filter: brightness(0) invert(1);
+        }
+        
+        body.dark-mode #darkModeBtn {
+            background-color: #ff7f3f;
+            color: #fff;
+        }
+        
+        body.dark-mode .stat-number {
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .badge {
+            background-color: #ff7f3f;
+            color: #fff;
+        }
+        
+        body.dark-mode .quote {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .quote-author {
+            color: #ff7f3f;
+        }
+        /* Header */
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo img {
+            max-height: 60px;
+            width: auto;
+        }
+        
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+        
+        .burger span {
+            width: 30px;
+            height: 3px;
+            background-color: #ff7f3f;
+            border-radius: 10px;
+            transition: all 0.3s linear;
+        }
+        
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        .navbar ul li {
+            position: relative;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            display: block;
+        }
+        
+        .navbar ul li a:hover,
+        .navbar ul li a.active {
+            color: #ff7f3f;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 0.5rem 0;
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        
+        .dropdown:hover>.submenu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .submenu li {
+            width: 100%;
+        }
+        
+        .submenu li a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            white-space: nowrap;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .submenu li a:hover {
+            background-color: #f0f0f0;
+            color: #ff7f3f;
+        }
+        
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: transparent;
+        }
+        
+        .dark-mode-toggle {
+            margin-left: 1rem;
+        }
+        
+        #darkModeBtn {
+            background-color: #ff7f3f;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #darkModeBtn:hover {
+            transform: scale(1.1);
+        }
+        /* Main content */
+        
+        main {
+            min-height: calc(100vh - 200px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><polygon points="50,15 90,35 90,65 50,85 10,65 10,35" fill="none" stroke="white" stroke-width="2"/></svg>');
+            background-size: 60px 60px;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+            to {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            animation: fadeInUp 0.8s ease;
+        }
+        /* Introduction */
+        
+        .valeurs-intro {
+            text-align: center;
+            padding: 4rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .valeurs-intro h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .valeurs-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        /* Grille des valeurs */
+        
+        .valeurs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5% 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .valeur-card {
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .valeur-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff7f3f, #ffb88c);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .valeur-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .valeur-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .valeur-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .valeur-card h3 {
+            color: #ff7f3f;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .valeur-card p {
+            line-height: 1.8;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        /* Section engagement */
+        
+        .engagements {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        body.dark-mode .engagements {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+        
+        .engagements h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .engagements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .engagement-card {
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .engagement-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .engagement-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .engagement-card h3 {
+            color: #ff7f3f;
+            margin-bottom: 1rem;
+        }
+        
+        .engagement-stats {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+        }
+        /* Témoignages */
+        
+        .testimonials {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .testimonials h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 3px solid #ff7f3f;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin: 1rem 0;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #ff7f3f;
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        /* Charte éthique */
+        
+        .charte-section {
+            padding: 4rem 5%;
+            text-align: center;
+            background: linear-gradient(135deg, #ff7f3f, #ffb88c);
+            color: #fff;
+        }
+        
+        .charte-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .charte-content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .charte-content p {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .charte-btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #ff7f3f;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .charte-btn:hover {
+            transform: translateY(-3px);
+        }
+        /* Footer */
+        
+        footer {
+            padding: 3rem 5%;
+            margin-top: 3rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-info {
+            text-align: left;
+        }
+        
+        .footer-info p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .footer-info p:first-child {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .social {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social a {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .social a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .social a img {
+            width: 28px;
+            height: 28px;
+            transition: filter 0.3s ease;
+        }
+        /* Animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .burger {
+                display: flex;
+            }
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 5rem 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            body.dark-mode .navbar {
+                background-color: #2d2d2d;
+            }
+            .navbar.active {
+                right: 0;
+            }
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+            }
+            .navbar ul li {
+                width: 100%;
+            }
+            .dropdown {
+                width: 100%;
+            }
+            .submenu {
+                position: static;
+                display: none;
+                background-color: transparent;
+                box-shadow: none;
+                padding-left: 1rem;
+                opacity: 1;
+                visibility: visible;
+                transition: none;
+            }
+            .dropdown.active>.submenu {
+                display: block;
+            }
+            .dropdown:hover>.submenu {
+                display: none;
+            }
+            .dropdown.active>.submenu {
+                display: block;
+            }
+            .submenu li a {
+                padding: 0.5rem 1rem;
+            }
+            .dark-mode-toggle {
+                margin-top: 2rem;
+            }
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .valeurs-grid {
+                grid-template-columns: 1fr;
+            }
+            .engagements-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .engagement-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-info {
+                text-align: center;
+            }
+            .social {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 3rem 0;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .page-header .subtitle {
+                font-size: 1rem;
+            }
+            .valeurs-intro h2 {
+                font-size: 1.5rem;
+            }
+            .valeurs-intro p {
+                font-size: 1rem;
+            }
+            .valeur-card {
+                padding: 1.5rem;
+            }
+            .valeur-icon {
+                font-size: 2.5rem;
+            }
+            .valeur-card h3 {
+                font-size: 1.3rem;
+            }
+            .engagement-card {
+                padding: 1.5rem;
+            }
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .charte-content h2 {
+                font-size: 1.5rem;
+            }
+            .footer-info p {
+                font-size: 0.9rem;
+            }
+            .social a img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.png" alt="Groupe La Passerelle - Retour accueil">
+            </a>
+        </div>
+
+        <button class="burger" id="burgerBtn" aria-label="Menu principal" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="navbar" id="navbar" aria-label="Navigation principale">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle active" aria-haspopup="true" aria-expanded="false">Présentation</a>
+                    <ul class="submenu" aria-label="Sous-menu présentation">
+                        <li><a href="historique.html">Notre Histoire</a></li>
+                        <li><a href="equipe.html">L'équipe</a></li>
+                        <li><a href="valeurs.html" class="active">Nos valeurs</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Expertises</a>
+                    <ul class="submenu" aria-label="Sous-menu expertises">
+                        <li><a href="expertise-data.html">Analyse de données</a></li>
+                        <li><a href="expertise-reseaux.html">Réseaux & Télécoms</a></li>
+                        <li><a href="expertise-bdd.html">Bases de données</a></li>
+                        <li><a href="expertise-dev.html">Développement</a></li>
+                        <li><a href="expertise-securite.html">Sécurité & Audit</a></li>
+                    </ul>
+                </li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="recrutement.html">Recrutement</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="dark-mode-toggle">
+                <button id="darkModeBtn" aria-label="Activer le mode sombre">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Nos valeurs</h1>
+                <p class="subtitle">Cinq piliers qui guident nos actions au quotidien</p>
+            </div>
+        </section>
+
+        <section class="valeurs-intro">
+            <div class="container">
+                <h2>L'ADN de La Passerelle</h2>
+                <p>Depuis notre création, nous plaçons l'humain et l'éthique au cœur de nos décisions. Nos valeurs ne sont pas des mots sur un mur, mais des principes que nous vivons chaque jour, dans nos relations avec nos clients, nos partenaires et entre
+                    nous.
+                </p>
+            </div>
+        </section>
+
+        <section class="valeurs-grid">
+            <div class="valeur-card">
+                <div class="valeur-icon">🏆</div>
+                <h3>Excellence</h3>
+                <p>Nous visons l'excellence dans tout ce que nous entreprenons. Cela se traduit par une exigence technique sans compromis, une veille technologique permanente et une quête constante d'amélioration. Nos certifications (ISO 27001, Microsoft
+                    Gold) en sont la preuve.</p>
+                <span class="badge">Certifications reconnues</span>
+            </div>
+
+            <div class="valeur-card">
+                <div class="valeur-icon">💡</div>
+                <h3>Innovation</h3>
+                <p>L'innovation est notre moteur. Nous explorons constamment de nouvelles technologies, expérimentons dans notre lab R&D et encourageons la prise d'initiative. Chaque idée compte, qu'elle vienne d'un stagiaire ou d'un expert confirmé.</p>
+                <span class="badge">+10 brevets déposés</span>
+            </div>
+
+            <div class="valeur-card">
+                <div class="valeur-icon">🤝</div>
+                <h3>Confiance</h3>
+                <p>La confiance se gagne et se cultive. Avec nos clients, nous construisons des relations transparentes et durables. En interne, nous faisons confiance à nos équipes et leur donnons l'autonomie nécessaire pour exceller.</p>
+                <span class="badge">95% de clients fidèles</span>
+            </div>
+
+            <div class="valeur-card">
+                <div class="valeur-icon">🌱</div>
+                <h3>Engagement</h3>
+                <p>Nous nous engageons pour un numérique responsable. Réduction de notre empreinte carbone, projets à impact social, inclusion et diversité : nous agissons concrètement pour un monde meilleur.</p>
+                <span class="badge">RSE au cœur</span>
+            </div>
+
+            <div class="valeur-card">
+                <div class="valeur-icon">👥</div>
+                <h3>Collaboration</h3>
+                <p>Seul on va plus vite, ensemble on va plus loin. Nous favorisons le travail d'équipe, le partage de connaissances et l'entraide. Nos séminaires, hackathons et afterworks renforcent cette culture collaborative.</p>
+                <span class="badge">40 événements/an</span>
+            </div>
+
+            <div class="valeur-card">
+                <div class="valeur-icon">🔒</div>
+                <h3>Intégrité</h3>
+                <p>L'intégrité est non négociable. Nous respectons nos engagements, protégeons les données de nos clients et agissons toujours avec honnêteté et transparence, même quand personne ne regarde.</p>
+                <span class="badge">Charte éthique</span>
+            </div>
+        </section>
+
+        <section class="engagements">
+            <h2>Nos engagements concrets</h2>
+            <div class="engagements-grid">
+                <div class="engagement-card">
+                    <div class="engagement-icon">🌍</div>
+                    <h3>Numérique responsable</h3>
+                    <p>Réduction de 40% de notre empreinte carbone depuis 2020. Politique d'achats responsables et recyclage systématique du matériel.</p>
+                </div>
+                <div class="engagement-card">
+                    <div class="engagement-icon">⚖️</div>
+                    <h3>Égalité des chances</h3>
+                    <p>Index d'égalité femmes-hommes de 92/100. Recrutements inclusifs et sensibilisation aux biais inconscients.</p>
+                </div>
+                <div class="engagement-card">
+                    <div class="engagement-icon">🎓</div>
+                    <h3>Formation & mentorat</h3>
+                    <p>Partenariats avec 8 écoles, 50 mentors internes, 2000 heures de formation par an dispensées aux étudiants.</p>
+                </div>
+                <div class="engagement-card">
+                    <div class="engagement-icon">💚</div>
+                    <h3>Mécénat de compétences</h3>
+                    <p>1000 heures offertes par an à des associations. Projets tech pour l'intérêt général.</p>
+                </div>
+            </div>
+
+            <div class="engagement-stats">
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">de collaborateurs fiers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">92/100</span>
+                    <span class="stat-label">Index égalité</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">40%</span>
+                    <span class="stat-label">CO2 en moins</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Ils parlent de nos valeurs</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop&q=80" alt="Thomas Martin">
+                    </div>
+                    <p class="testimonial-text">"L'excellence n'est pas une option chez nous. C'est ce qui nous permet de proposer des solutions à la hauteur des enjeux de nos clients, tout en restant humains."</p>
+                    <p class="testimonial-author">Thomas Martin</p>
+                    <p class="testimonial-role">CEO & Fondateur</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80" alt="Sophie Bernard">
+                    </div>
+                    <p class="testimonial-text">"L'innovation chez nous, ce n'est pas un mot à la mode. C'est une réalité quotidienne : nous encourageons l'expérimentation et l'apprentissage continu."</p>
+                    <p class="testimonial-author">Sophie Bernard</p>
+                    <p class="testimonial-role">Directrice Data & IA</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop&q=80" alt="Marc Petit">
+                    </div>
+                    <p class="testimonial-text">"La confiance est la base de tout. Confiance entre collègues, avec nos clients. C'est ce qui nous permet d'avancer sereinement et de relever des défis complexes."</p>
+                    <p class="testimonial-author">Marc Petit</p>
+                    <p class="testimonial-role">Directeur Réseaux & Télécoms</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="charte-section">
+            <div class="charte-content">
+                <h2>Notre charte éthique</h2>
+                <p>Notre charte éthique formalise nos engagements en matière de déontologie, de confidentialité, de respect des personnes et de l'environnement. Elle s'applique à tous nos collaborateurs et partenaires.</p>
+                <a href="#" class="charte-btn">Télécharger la charte (PDF)</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 Groupe La Passerelle - ESN. Tous droits réservés.</p>
+                <p>Quartier Tié-Tié, Pointe-Noire, Congo-Brazzaville</p>
+                <p>Tél : 055258732</p>
+                <p>Email : tatybeni@gmail.com</p>
+            </div>
+            <div class="social">
+                <a href="#" aria-label="LinkedIn">
+                    <img src="assets/icons/linkedin.svg" alt="LinkedIn">
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <img src="assets/icons/twitter.svg" alt="Twitter">
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <img src="assets/icons/github.svg" alt="GitHub">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.className = savedTheme;
+            darkModeBtn.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
+        }
+
+        darkModeBtn.addEventListener('click', () => {
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                darkModeBtn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                darkModeBtn.textContent = '🌙';
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+
+        // Burger menu
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navbar = document.getElementById('navbar');
+
+        burgerBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            burgerBtn.classList.toggle('active');
+            const expanded = burgerBtn.getAttribute('aria-expanded') === 'true' ? false : true;
+            burgerBtn.setAttribute('aria-expanded', expanded);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target) && !burgerBtn.contains(e.target)) {
+                navbar.classList.remove('active');
+                burgerBtn.classList.remove('active');
+                burgerBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Gestion des dropdowns pour mobile
+        const dropdowns = document.querySelectorAll('.dropdown');
+        const isMobile = () => window.innerWidth <= 768;
+
+        function setupDropdowns() {
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('.dropdown-toggle');
+
+                // Supprimer les anciens événements
+                link.replaceWith(link.cloneNode(true));
+                const newLink = dropdown.querySelector('.dropdown-toggle');
+
+                if (isMobile()) {
+                    // Mode mobile : clic pour ouvrir/fermer
+                    newLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Fermer les autres dropdowns
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                d.classList.remove('active');
+                            }
+                        });
+
+                        dropdown.classList.toggle('active');
+                    });
+                } else {
+                    // Mode desktop : hover géré par CSS, pas d'action au clic
+                    newLink.addEventListener('click', (e) => {
+                        e.preventDefault(); // Empêcher la navigation
+                    });
+                }
+            });
+        }
+
+        // Initial setup
+        setupDropdowns();
+
+        // Reconfigure au redimensionnement
+        window.addEventListener('resize', () => {
+            setupDropdowns();
+            // En mode desktop, s'assurer que tous les dropdowns sont fermés
+            if (!isMobile()) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Fermer les dropdowns si on clique ailleurs
+        document.addEventListener('click', (e) => {
+            if (isMobile() && !e.target.closest('.dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Animation des cartes au scroll
+        const cards = document.querySelectorAll('.valeur-card, .engagement-card, .testimonial-card');
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>

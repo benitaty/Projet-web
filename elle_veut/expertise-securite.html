@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Sécurité & Audit - Groupe La Passerelle</title>
+    <meta name="description" content="Expertise en Cybersécurité, Audit, Pentest, SOC et Conformité">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <style>
+        /* Reset & Base */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Light mode (default) */
+        
+        body.light-mode {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        body.light-mode .header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-mode footer {
+            background-color: #2c3e50;
+            color: #fff;
+        }
+        
+        body.light-mode .card,
+        body.light-mode .expertise-card,
+        body.light-mode .tech-card,
+        body.light-mode .service-card {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-mode .social a img {
+            filter: brightness(0) invert(1);
+        }
+        
+        body.light-mode .stat-number {
+            color: #ff7f3f;
+        }
+        
+        body.light-mode .badge {
+            background: linear-gradient(135deg, #ff7f3f, #ffb88c);
+            color: #fff;
+        }
+        
+        body.light-mode .severity-critical {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        
+        body.light-mode .severity-high {
+            background-color: #fd7e14;
+            color: #fff;
+        }
+        
+        body.light-mode .severity-medium {
+            background-color: #ffc107;
+            color: #333;
+        }
+        
+        body.light-mode .severity-low {
+            background-color: #28a745;
+            color: #fff;
+        }
+        /* Dark mode */
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .header {
+            background-color: #2d2d2d;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.dark-mode footer {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.dark-mode .card,
+        body.dark-mode .expertise-card,
+        body.dark-mode .tech-card,
+        body.dark-mode .service-card {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .navbar ul li a {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .navbar ul li a:hover,
+        body.dark-mode .navbar ul li a.active {
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .submenu {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark-mode .submenu li a {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .submenu li a:hover {
+            background-color: #3d3d3d;
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .social a img {
+            filter: brightness(0) invert(1);
+        }
+        
+        body.dark-mode #darkModeBtn {
+            background-color: #ff7f3f;
+            color: #fff;
+        }
+        
+        body.dark-mode .stat-number {
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .badge {
+            background: linear-gradient(135deg, #ff7f3f, #ffb88c);
+            color: #fff;
+        }
+        
+        body.dark-mode .tech-tag {
+            background-color: #404040;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .dashboard-preview {
+            background-color: #1a1a1a;
+            border: 1px solid #404040;
+        }
+        
+        body.dark-mode .threat-line {
+            border-left-color: #ff7f3f;
+        }
+        /* Header */
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo img {
+            max-height: 60px;
+            width: auto;
+        }
+        
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+        
+        .burger span {
+            width: 30px;
+            height: 3px;
+            background-color: #ff7f3f;
+            border-radius: 10px;
+            transition: all 0.3s linear;
+        }
+        
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        .navbar ul li {
+            position: relative;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            display: block;
+        }
+        
+        .navbar ul li a:hover,
+        .navbar ul li a.active {
+            color: #ff7f3f;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 0.5rem 0;
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        
+        .dropdown:hover>.submenu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .submenu li {
+            width: 100%;
+        }
+        
+        .submenu li a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            white-space: nowrap;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .submenu li a:hover {
+            background-color: #f0f0f0;
+            color: #ff7f3f;
+        }
+        
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: transparent;
+        }
+        
+        .dark-mode-toggle {
+            margin-left: 1rem;
+        }
+        
+        #darkModeBtn {
+            background-color: #ff7f3f;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #darkModeBtn:hover {
+            transform: scale(1.1);
+        }
+        /* Main content */
+        
+        main {
+            min-height: calc(100vh - 200px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #6c757d, #343a40);
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="5" fill="white"/><circle cx="80" cy="80" r="5" fill="white"/><circle cx="50" cy="50" r="20" fill="none" stroke="white" stroke-width="2"/><path d="M50 30 L50 70 M30 50 L70 50" stroke="white" stroke-width="2"/></svg>');
+            background-size: 100px 100px;
+            animation: shieldPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes shieldPulse {
+            0%,
+            100% {
+                opacity: 0.1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.2;
+                transform: scale(1.1);
+            }
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            animation: fadeInUp 0.8s ease;
+        }
+        /* Introduction */
+        
+        .expertise-intro {
+            text-align: center;
+            padding: 4rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .expertise-intro h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .expertise-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        /* Statistiques */
+        
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+        }
+        /* Grille des expertises */
+        
+        .expertises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5% 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .expertise-card {
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6c757d, #343a40);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .expertise-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .expertise-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .expertise-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .expertise-card h3 {
+            color: #ff7f3f;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .expertise-card p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background-color: #e9ecef;
+            color: #333;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        body.dark-mode .tech-tag {
+            background-color: #404040;
+            color: #f0f0f0;
+        }
+        /* Dashboard SOC */
+        
+        .soc-dashboard {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        body.dark-mode .soc-dashboard {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+        
+        .soc-dashboard h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .dashboard-preview {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 2rem;
+            color: #0f0;
+            font-family: monospace;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .dashboard-title {
+            color: #ff7f3f;
+            font-size: 1.2rem;
+        }
+        
+        .dashboard-status {
+            color: #28a745;
+        }
+        
+        .threat-list {
+            margin-top: 1rem;
+        }
+        
+        .threat-line {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-left: 3px solid;
+            animation: threatPulse 2s infinite;
+        }
+        
+        @keyframes threatPulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+        
+        .threat-time {
+            color: #6c757d;
+            min-width: 60px;
+        }
+        
+        .threat-severity {
+            padding: 0.2rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            min-width: 70px;
+            text-align: center;
+        }
+        
+        .threat-source {
+            flex: 1;
+        }
+        /* Certifications */
+        
+        .certifications-section {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .certifications-section h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .cert-card {
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cert-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+        
+        .cert-card h3 {
+            color: #ff7f3f;
+            font-size: 1.1rem;
+        }
+        /* Services */
+        
+        .services-section {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .services-section h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            color: #ff7f3f;
+            margin-bottom: 1rem;
+        }
+        
+        .service-price {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+            color: #ff7f3f;
+            font-weight: bold;
+        }
+        
+        body.dark-mode .service-price {
+            border-top-color: #404040;
+        }
+        /* Threat Map */
+        
+        .threat-map-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        body.dark-mode .threat-map-section {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+        
+        .threat-map-section h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .map-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .map-stat {
+            padding: 1rem 2rem;
+            background-color: rgba(255, 127, 63, 0.1);
+            border-radius: 10px;
+        }
+        
+        .map-stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff7f3f;
+        }
+        /* CTA */
+        
+        .cta-section {
+            background: linear-gradient(135deg, #6c757d, #343a40);
+            color: #fff;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #343a40;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+        }
+        /* Footer */
+        
+        footer {
+            padding: 3rem 5%;
+            margin-top: 3rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-info {
+            text-align: left;
+        }
+        
+        .footer-info p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .footer-info p:first-child {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .social {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social a {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .social a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .social a img {
+            width: 28px;
+            height: 28px;
+            transition: filter 0.3s ease;
+        }
+        /* Animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Badge */
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .burger {
+                display: flex;
+            }
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 5rem 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            body.dark-mode .navbar {
+                background-color: #2d2d2d;
+            }
+            .navbar.active {
+                right: 0;
+            }
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+            }
+            .navbar ul li {
+                width: 100%;
+            }
+            .dropdown {
+                width: 100%;
+            }
+            .submenu {
+                position: static;
+                display: none;
+                background-color: transparent;
+                box-shadow: none;
+                padding-left: 1rem;
+                opacity: 1;
+                visibility: visible;
+                transition: none;
+            }
+            .dropdown.active>.submenu {
+                display: block;
+            }
+            .dropdown:hover>.submenu {
+                display: none;
+            }
+            .dropdown.active>.submenu {
+                display: block;
+            }
+            .submenu li a {
+                padding: 0.5rem 1rem;
+            }
+            .dark-mode-toggle {
+                margin-top: 2rem;
+            }
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .stats-container {
+                gap: 1.5rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .expertises-grid {
+                grid-template-columns: 1fr;
+            }
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .threat-line {
+                flex-wrap: wrap;
+            }
+            .threat-time,
+            .threat-severity {
+                min-width: auto;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-info {
+                text-align: center;
+            }
+            .social {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 3rem 0;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .page-header .subtitle {
+                font-size: 1rem;
+            }
+            .expertise-intro h2 {
+                font-size: 1.5rem;
+            }
+            .expertise-intro p {
+                font-size: 1rem;
+            }
+            .stats-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .expertise-card {
+                padding: 1.5rem;
+            }
+            .expertise-icon {
+                font-size: 2.5rem;
+            }
+            .expertise-card h3 {
+                font-size: 1.2rem;
+            }
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+            .dashboard-preview {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+            .map-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .footer-info p {
+                font-size: 0.9rem;
+            }
+            .social a img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.png" alt="Groupe La Passerelle - Retour accueil">
+            </a>
+        </div>
+
+        <button class="burger" id="burgerBtn" aria-label="Menu principal" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="navbar" id="navbar" aria-label="Navigation principale">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Présentation</a>
+                    <ul class="submenu" aria-label="Sous-menu présentation">
+                        <li><a href="historique.html">Notre Histoire</a></li>
+                        <li><a href="equipe.html">L'équipe</a></li>
+                        <li><a href="valeurs.html">Nos valeurs</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle active" aria-haspopup="true" aria-expanded="false">Expertises</a>
+                    <ul class="submenu" aria-label="Sous-menu expertises">
+                        <li><a href="expertise-data.html">Analyse de données</a></li>
+                        <li><a href="expertise-reseaux.html">Réseaux & Télécoms</a></li>
+                        <li><a href="expertise-bdd.html">Bases de données</a></li>
+                        <li><a href="expertise-dev.html">Développement</a></li>
+                        <li><a href="expertise-securite.html" class="active">Sécurité & Audit</a></li>
+                    </ul>
+                </li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="recrutement.html">Recrutement</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="dark-mode-toggle">
+                <button id="darkModeBtn" aria-label="Activer le mode sombre">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Sécurité & Audit</h1>
+                <p class="subtitle">Protégez votre entreprise contre les cybermenaces</p>
+            </div>
+        </section>
+
+        <section class="expertise-intro">
+            <div class="container">
+                <h2>La sécurité au cœur de vos systèmes</h2>
+                <p>Notre équipe d'experts en cybersécurité vous accompagne pour sécuriser vos infrastructures, applications et données. Du pentest à la mise en place de SOC, nous assurons une protection complète 24/7.</p>
+
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Audits réalisés</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">SOC</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">ISO 27001</span>
+                        <span class="stat-label">Certifiés</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="expertises-grid">
+            <div class="expertise-card">
+                <div class="expertise-icon">🔍</div>
+                <h3>Audit & Pentest</h3>
+                <p>Tests d'intrusion, analyse de vulnérabilités et audits de sécurité complets de vos systèmes.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">Pentest</span>
+                    <span class="tech-tag">OWASP</span>
+                    <span class="tech-tag">Kali</span>
+                    <span class="tech-tag">Metasploit</span>
+                </div>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🛡️</div>
+                <h3>SOC & Monitoring</h3>
+                <p>Centre d'opérations de sécurité 24/7 pour détecter et répondre aux incidents en temps réel.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">SIEM</span>
+                    <span class="tech-tag">EDR</span>
+                    <span class="tech-tag">SOAR</span>
+                    <span class="tech-tag">XDR</span>
+                </div>
+                <span class="badge">24/7</span>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🔐</div>
+                <h3>Gestion des identités</h3>
+                <p>IAM, MFA, SSO et gestion des accès pour sécuriser l'authentification de vos utilisateurs.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">IAM</span>
+                    <span class="tech-tag">Okta</span>
+                    <span class="tech-tag">Azure AD</span>
+                    <span class="tech-tag">Keycloak</span>
+                </div>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">📜</div>
+                <h3>Conformité & RGPD</h3>
+                <p>Accompagnement à la mise en conformité (RGPD, ISO 27001, HDS) et à la gestion des risques.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">RGPD</span>
+                    <span class="tech-tag">ISO27001</span>
+                    <span class="tech-tag">HDS</span>
+                    <span class="tech-tag">DPO</span>
+                </div>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">☁️</div>
+                <h3>Sécurité Cloud</h3>
+                <p>Sécurisation des environnements cloud (AWS, Azure, GCP) et des architectures hybrides.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">CSPM</span>
+                    <span class="tech-tag">CWPP</span>
+                    <span class="tech-tag">Prisma</span>
+                    <span class="tech-tag">WAF</span>
+                </div>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🎓</div>
+                <h3>Sensibilisation</h3>
+                <p>Formation et sensibilisation des collaborateurs aux bonnes pratiques de sécurité.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">Phishing</span>
+                    <span class="tech-tag">E-learning</span>
+                    <span class="tech-tag">Workshops</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="soc-dashboard">
+            <h2>Notre SOC en action</h2>
+            <div class="dashboard-preview">
+                <div class="dashboard-header">
+                    <span class="dashboard-title">🛡️ Security Operations Center - Live</span>
+                    <span class="dashboard-status">● 24/7 Monitoring</span>
+                </div>
+                <div class="threat-list">
+                    <div class="threat-line" style="border-left-color: #dc3545;">
+                        <span class="threat-time">09:47</span>
+                        <span class="threat-severity severity-critical">Critique</span>
+                        <span class="threat-source">Tentative d'intrusion brute force - IP 185.234.xx.xx</span>
+                    </div>
+                    <div class="threat-line" style="border-left-color: #fd7e14;">
+                        <span class="threat-time">09:32</span>
+                        <span class="threat-severity severity-high">Élevé</span>
+                        <span class="threat-source">Malware détecté - poste utilisateur isolé</span>
+                    </div>
+                    <div class="threat-line" style="border-left-color: #ffc107;">
+                        <span class="threat-time">09:15</span>
+                        <span class="threat-severity severity-medium">Moyen</span>
+                        <span class="threat-source">Scan de ports anormal - en cours d'analyse</span>
+                    </div>
+                    <div class="threat-line" style="border-left-color: #28a745;">
+                        <span class="threat-time">08:58</span>
+                        <span class="threat-severity severity-low">Faible</span>
+                        <span class="threat-source">Mise à jour de sécurité manquante</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="certifications-section">
+            <h2>Nos certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg" alt="Cisco">
+                    <h3>CCNA Security</h3>
+                </div>
+                <div class="cert-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure">
+                    <h3>Azure Security</h3>
+                </div>
+                <div class="cert-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS">
+                    <h3>AWS Security</h3>
+                </div>
+                <div class="cert-card">
+                    <div style="width:80px;height:80px;background:#ff7f3f;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;">ISO</div>
+                    <h3>ISO 27001</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section">
+            <h2>Nos services d'audit</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Audit d'infrastructure</h3>
+                    <p>Analyse complète de votre infrastructure réseau, serveurs et équipements de sécurité.</p>
+                    <div class="service-price">À partir de 3 500€</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Audit d'application</h3>
+                    <p>Tests d'intrusion sur vos applications web, mobile et APIs.</p>
+                    <div class="service-price">À partir de 2 900€</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>Audit de conformité</h3>
+                    <p>Vérification de la conformité RGPD, ISO 27001 et recommandations.</p>
+                    <div class="service-price">À partir de 2 500€</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="threat-map-section">
+            <h2>Menaces en temps réel</h2>
+            <div class="map-stats">
+                <div class="map-stat">
+                    <div class="map-stat-value">1,247</div>
+                    <div>Attaques bloquées aujourd'hui</div>
+                </div>
+                <div class="map-stat">
+                    <div class="map-stat-value">145</div>
+                    <div>Incidents critiques traités</div>
+                </div>
+                <div class="map-stat">
+                    <div class="map-stat-value">99.9%</div>
+                    <div>Taux de blocage</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Protégez votre entreprise</h2>
+            <p>Audit de sécurité gratuit et recommandations personnalisées</p>
+            <a href="contact.html" class="cta-btn">Demander un audit</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 Groupe La Passerelle - ESN. Tous droits réservés.</p>
+                <p>Tél : 055258732</p>
+                <p>Email : tatybeni@gmail.com</p>
+            </div>
+            <div class="social">
+                <a href="#" aria-label="LinkedIn">
+                    <img src="assets/icons/linkedin.svg" alt="LinkedIn">
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <img src="assets/icons/twitter.svg" alt="Twitter">
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <img src="assets/icons/github.svg" alt="GitHub">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.className = savedTheme;
+            darkModeBtn.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
+        }
+
+        darkModeBtn.addEventListener('click', () => {
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                darkModeBtn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                darkModeBtn.textContent = '🌙';
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+
+        // Burger menu
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navbar = document.getElementById('navbar');
+
+        burgerBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            burgerBtn.classList.toggle('active');
+            const expanded = burgerBtn.getAttribute('aria-expanded') === 'true' ? false : true;
+            burgerBtn.setAttribute('aria-expanded', expanded);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target) && !burgerBtn.contains(e.target)) {
+                navbar.classList.remove('active');
+                burgerBtn.classList.remove('active');
+                burgerBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Gestion des dropdowns pour mobile
+        const dropdowns = document.querySelectorAll('.dropdown');
+        const isMobile = () => window.innerWidth <= 768;
+
+        function setupDropdowns() {
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('.dropdown-toggle');
+
+                // Supprimer les anciens événements
+                link.replaceWith(link.cloneNode(true));
+                const newLink = dropdown.querySelector('.dropdown-toggle');
+
+                if (isMobile()) {
+                    // Mode mobile : clic pour ouvrir/fermer
+                    newLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Fermer les autres dropdowns
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                d.classList.remove('active');
+                            }
+                        });
+
+                        dropdown.classList.toggle('active');
+                    });
+                } else {
+                    // Mode desktop : hover géré par CSS, pas d'action au clic
+                    newLink.addEventListener('click', (e) => {
+                        e.preventDefault(); // Empêcher la navigation
+                    });
+                }
+            });
+        }
+
+        // Initial setup
+        setupDropdowns();
+
+        // Reconfigure au redimensionnement
+        window.addEventListener('resize', () => {
+            setupDropdowns();
+            // En mode desktop, s'assurer que tous les dropdowns sont fermés
+            if (!isMobile()) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Fermer les dropdowns si on clique ailleurs
+        document.addEventListener('click', (e) => {
+            if (isMobile() && !e.target.closest('.dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Animation des cartes au scroll
+        const cards = document.querySelectorAll('.expertise-card, .service-card, .cert-card');
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
+
+</html>

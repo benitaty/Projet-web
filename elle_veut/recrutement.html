@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Carrières - Rejoignez Groupe La Passerelle</title>
+    <meta name="description" content="Rejoignez une ESN innovante : offres d'emploi, stages, alternance. Data, Réseaux, Sécurité, Développement.">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <style>
+        /* Reset & Base */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Light mode (default) */
+        
+        body.light-mode {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        body.light-mode .header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-mode footer {
+            background-color: #2c3e50;
+            color: #fff;
+        }
+        
+        body.light-mode .card,
+        body.light-mode .job-card,
+        body.light-mode .benefit-card {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-mode .job-tag {
+            background-color: #e9ecef;
+            color: #333;
+        }
+        
+        body.light-mode .job-tag.fulltime {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        body.light-mode .job-tag.internship {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+        
+        body.light-mode .job-tag.alternance {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        body.light-mode .btn-apply {
+            background-color: #ff7f3f;
+            color: #fff;
+        }
+        
+        body.light-mode .btn-apply:hover {
+            background-color: #ff9f6f;
+        }
+        
+        body.light-mode .social a img {
+            filter: brightness(0) invert(1);
+        }
+        /* Dark mode */
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .header {
+            background-color: #2d2d2d;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.dark-mode footer {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.dark-mode .card,
+        body.dark-mode .job-card,
+        body.dark-mode .benefit-card {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .job-tag {
+            background-color: #404040;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .job-tag.fulltime {
+            background-color: #1e3a2a;
+            color: #98f0b0;
+        }
+        
+        body.dark-mode .job-tag.internship {
+            background-color: #1a3a5a;
+            color: #a8d0ff;
+        }
+        
+        body.dark-mode .job-tag.alternance {
+            background-color: #5a4a1a;
+            color: #ffd966;
+        }
+        
+        body.dark-mode .btn-apply {
+            background-color: #ff7f3f;
+            color: #fff;
+        }
+        
+        body.dark-mode .btn-apply:hover {
+            background-color: #ff9f6f;
+        }
+        
+        body.dark-mode .navbar ul li a {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .navbar ul li a:hover,
+        body.dark-mode .navbar ul li a.active {
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .submenu {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark-mode .submenu li a {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .submenu li a:hover {
+            background-color: #3d3d3d;
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .social a img {
+            filter: brightness(0) invert(1);
+        }
+        
+        body.dark-mode #darkModeBtn {
+            background-color: #ff7f3f;
+            color: #fff;
+        }
+        
+        body.dark-mode .search-box input {
+            background-color: #404040;
+            color: #f0f0f0;
+            border-color: #555;
+        }
+        
+        body.dark-mode .search-box input::placeholder {
+            color: #aaa;
+        }
+        
+        body.dark-mode .filter-select {
+            background-color: #404040;
+            color: #f0f0f0;
+            border-color: #555;
+        }
+        /* Header */
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo img {
+            max-height: 60px;
+            width: auto;
+        }
+        
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+        
+        .burger span {
+            width: 30px;
+            height: 3px;
+            background-color: #ff7f3f;
+            border-radius: 10px;
+            transition: all 0.3s linear;
+        }
+        
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        .navbar ul li {
+            position: relative;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            display: block;
+        }
+        
+        .navbar ul li a:hover,
+        .navbar ul li a.active {
+            color: #ff7f3f;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 0.5rem 0;
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        
+        .dropdown:hover>.submenu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .submenu li {
+            width: 100%;
+        }
+        
+        .submenu li a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            white-space: nowrap;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .submenu li a:hover {
+            background-color: #f0f0f0;
+            color: #ff7f3f;
+        }
+        
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: transparent;
+        }
+        
+        .dark-mode-toggle {
+            margin-left: 1rem;
+        }
+        
+        #darkModeBtn {
+            background-color: #ff7f3f;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #darkModeBtn:hover {
+            transform: scale(1.1);
+        }
+        /* Main content */
+        
+        main {
+            min-height: calc(100vh - 200px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #6a4e9c, #4a3670);
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="2"/><circle cx="50" cy="50" r="20" fill="none" stroke="white" stroke-width="2"/></svg>');
+            background-size: 60px 60px;
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            animation: fadeInUp 0.8s ease;
+        }
+        /* Section avantages */
+        
+        .recrutement-intro {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .recrutement-intro h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefit-card {
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-card h3 {
+            color: #ff7f3f;
+            margin-bottom: 1rem;
+        }
+        /* Barre de recherche et filtres */
+        
+        .jobs-search {
+            padding: 2rem 5%;
+        }
+        
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            flex: 2;
+            min-width: 250px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .filter-select {
+            flex: 1;
+            min-width: 150px;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        /* Offres d'emploi */
+        
+        .jobs-offers {
+            padding: 2rem 5% 4rem;
+        }
+        
+        .jobs-offers h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .job-card {
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .job-title {
+            font-size: 1.2rem;
+            color: #ff7f3f;
+        }
+        
+        .job-location {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        body.dark-mode .job-location {
+            color: #aaa;
+        }
+        
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .job-tag {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .job-description {
+            margin: 1rem 0;
+            line-height: 1.6;
+            color: inherit;
+        }
+        
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .job-date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        body.dark-mode .job-date {
+            color: #aaa;
+        }
+        
+        .btn-apply {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        /* Candidature spontanée */
+        
+        .candidature-spontanee {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        body.dark-mode .candidature-spontanee {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+        
+        .candidature-spontanee h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .candidature-spontanee p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background-color: #ff7f3f;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+        }
+        /* Footer */
+        
+        footer {
+            padding: 3rem 5%;
+            margin-top: 3rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-info {
+            text-align: left;
+        }
+        
+        .footer-info p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .footer-info p:first-child {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .social {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social a {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .social a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .social a img {
+            width: 28px;
+            height: 28px;
+            transition: filter 0.3s ease;
+        }
+        /* Animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .burger {
+                display: flex;
+            }
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 5rem 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            body.dark-mode .navbar {
+                background-color: #2d2d2d;
+            }
+            .navbar.active {
+                right: 0;
+            }
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+            }
+            .navbar ul li {
+                width: 100%;
+            }
+            .dropdown {
+                width: 100%;
+            }
+            .submenu {
+                position: static;
+                display: none;
+                background-color: transparent;
+                box-shadow: none;
+                padding-left: 1rem;
+                opacity: 1;
+                visibility: visible;
+                transition: none;
+            }
+            .dropdown.active>.submenu {
+                display: block;
+            }
+            .dropdown:hover>.submenu {
+                display: none;
+            }
+            .dropdown.active>.submenu {
+                display: block;
+            }
+            .submenu li a {
+                padding: 0.5rem 1rem;
+            }
+            .dark-mode-toggle {
+                margin-top: 2rem;
+            }
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .search-filters {
+                flex-direction: column;
+            }
+            .search-box,
+            .filter-select {
+                width: 100%;
+            }
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-info {
+                text-align: center;
+            }
+            .social {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 3rem 0;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .page-header .subtitle {
+                font-size: 1rem;
+            }
+            .recrutement-intro h2 {
+                font-size: 1.5rem;
+            }
+            .job-card {
+                padding: 1rem;
+            }
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .job-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .btn-apply {
+                width: 100%;
+                text-align: center;
+            }
+            .footer-info p {
+                font-size: 0.9rem;
+            }
+            .social a img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.png" alt="Groupe La Passerelle - Retour accueil">
+            </a>
+        </div>
+
+        <button class="burger" id="burgerBtn" aria-label="Menu principal" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="navbar" id="navbar" aria-label="Navigation principale">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Présentation</a>
+                    <ul class="submenu" aria-label="Sous-menu présentation">
+                        <li><a href="historique.html">Notre Histoire</a></li>
+                        <li><a href="equipe.html">L'équipe</a></li>
+                        <li><a href="valeurs.html">Nos valeurs</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Expertises</a>
+                    <ul class="submenu" aria-label="Sous-menu expertises">
+                        <li><a href="expertise-data.html">Analyse de données</a></li>
+                        <li><a href="expertise-reseaux.html">Réseaux & Télécoms</a></li>
+                        <li><a href="expertise-bdd.html">Bases de données</a></li>
+                        <li><a href="expertise-dev.html">Développement</a></li>
+                        <li><a href="expertise-securite.html">Sécurité & Audit</a></li>
+                    </ul>
+                </li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="recrutement.html" class="active">Recrutement</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="dark-mode-toggle">
+                <button id="darkModeBtn" aria-label="Activer le mode sombre">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Rejoignez l'aventure</h1>
+                <p class="subtitle">Construisons ensemble le numérique de demain</p>
+            </div>
+        </section>
+
+        <section class="recrutement-intro">
+            <div class="container">
+                <h2>Pourquoi nous rejoindre ?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🌟</div>
+                        <h3>Formation continue</h3>
+                        <p>Budget formation de 2000€/an, certifications financées (AWS, Azure, Cisco, CISSP), accès aux conférences tech.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💻</div>
+                        <h3>Flex office</h3>
+                        <p>Télétravail partiel (2-3 jours/semaine), bureaux modernes et connectés, équipement haut de gamme (MacBook Pro ou PC).</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📈</div>
+                        <h3>Évolution de carrière</h3>
+                        <p>Double carrière : technique ou management. Plans de développement personnalisés, mentorat, mobilité interne.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <h3>Projets stimulants</h3>
+                        <p>Grands comptes, startups innovantes, projets R&D. De l'IA à la cybersécurité, chaque jour est différent.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🤝</div>
+                        <h3>Ambiance collaborative</h3>
+                        <p>Équipes soudées, afterworks, séminaires, hackathons. Une vraie culture d'entreprise.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🌍</div>
+                        <h3>Impact positif</h3>
+                        <p>Projets à impact environnemental et social. Partenariats avec des écoles et associations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="jobs-offers">
+            <h2>Nos offres du moment</h2>
+
+            <div class="search-filters">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Rechercher un poste, une technologie...">
+                </div>
+                <select id="locationFilter" class="filter-select">
+                    <option value="all">Toutes les villes</option>
+                    <option value="paris">Paris</option>
+                    <option value="lyon">Lyon</option>
+                    <option value="toulouse">Toulouse</option>
+                    <option value="nantes">Nantes</option>
+                </select>
+                <select id="typeFilter" class="filter-select">
+                    <option value="all">Tous types</option>
+                    <option value="fulltime">CDI</option>
+                    <option value="internship">Stage</option>
+                    <option value="alternance">Alternance</option>
+                </select>
+            </div>
+
+            <div class="jobs-grid" id="jobsGrid">
+                <div class="job-card" data-location="paris" data-type="fulltime">
+                    <div class="job-header">
+                        <h3 class="job-title">Architecte Cloud (AWS/Azure)</h3>
+                        <span class="job-location">📍 Paris</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag fulltime">CDI</span>
+                        <span class="job-tag">AWS</span>
+                        <span class="job-tag">Azure</span>
+                        <span class="job-tag">Terraform</span>
+                    </div>
+                    <p class="job-description">Vous concevrez des architectures cloud scalables et sécurisées pour nos clients grands comptes. Expérience minimum 5 ans.</p>
+                    <div class="job-footer">
+                        <span class="job-date">Publié il y a 3 jours</span>
+                        <button class="btn-apply" onclick="applyJob('Architecte Cloud')">Postuler</button>
+                    </div>
+                </div>
+
+                <div class="job-card" data-location="lyon" data-type="fulltime">
+                    <div class="job-header">
+                        <h3 class="job-title">Lead Developer Full Stack</h3>
+                        <span class="job-location">📍 Lyon</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag fulltime">CDI</span>
+                        <span class="job-tag">React</span>
+                        <span class="job-tag">Node.js</span>
+                        <span class="job-tag">TypeScript</span>
+                    </div>
+                    <p class="job-description">Encadrez une équipe de 5 développeurs sur des projets innovants. Stack moderne et méthodes agiles.</p>
+                    <div class="job-footer">
+                        <span class="job-date">Publié il y a 5 jours</span>
+                        <button class="btn-apply" onclick="applyJob('Lead Developer Full Stack')">Postuler</button>
+                    </div>
+                </div>
+
+                <div class="job-card" data-location="paris" data-type="fulltime">
+                    <div class="job-header">
+                        <h3 class="job-title">Ingénieur Cybersécurité (SOC)</h3>
+                        <span class="job-location">📍 Paris</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag fulltime">CDI</span>
+                        <span class="job-tag">SOC</span>
+                        <span class="job-tag">SIEM</span>
+                        <span class="job-tag">ISO27001</span>
+                    </div>
+                    <p class="job-description">Rejoignez notre SOC pour analyser et répondre aux incidents de sécurité. Certification CISSP appréciée.</p>
+                    <div class="job-footer">
+                        <span class="job-date">Publié il y a 1 semaine</span>
+                        <button class="btn-apply" onclick="applyJob('Ingénieur Cybersécurité')">Postuler</button>
+                    </div>
+                </div>
+
+                <div class="job-card" data-location="toulouse" data-type="internship">
+                    <div class="job-header">
+                        <h3 class="job-title">Stage Data Scientist - NLP</h3>
+                        <span class="job-location">📍 Toulouse</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag internship">Stage</span>
+                        <span class="job-tag">Python</span>
+                        <span class="job-tag">NLP</span>
+                        <span class="job-tag">Machine Learning</span>
+                    </div>
+                    <p class="job-description">Stage de fin d'études de 6 mois pour travailler sur des projets de traitement automatique du langage naturel.</p>
+                    <div class="job-footer">
+                        <span class="job-date">Publié il y a 2 jours</span>
+                        <button class="btn-apply" onclick="applyJob('Stage Data Scientist')">Postuler</button>
+                    </div>
+                </div>
+
+                <div class="job-card" data-location="nantes" data-type="alternance">
+                    <div class="job-header">
+                        <h3 class="job-title">Alternance Développeur Full Stack</h3>
+                        <span class="job-location">📍 Nantes</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag alternance">Alternance</span>
+                        <span class="job-tag">React</span>
+                        <span class="job-tag">Node.js</span>
+                        <span class="job-tag">MongoDB</span>
+                    </div>
+                    <p class="job-description">Préparez votre diplôme tout en travaillant sur des projets concrets. Accompagnement par un mentor.</p>
+                    <div class="job-footer">
+                        <span class="job-date">Publié il y a 4 jours</span>
+                        <button class="btn-apply" onclick="applyJob('Alternance Développeur')">Postuler</button>
+                    </div>
+                </div>
+
+                <div class="job-card" data-location="lyon" data-type="fulltime">
+                    <div class="job-header">
+                        <h3 class="job-title">Ingénieur Réseaux & Sécurité</h3>
+                        <span class="job-location">📍 Lyon</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag fulltime">CDI</span>
+                        <span class="job-tag">Cisco</span>
+                        <span class="job-tag">Palo Alto</span>
+                        <span class="job-tag">VPN</span>
+                    </div>
+                    <p class="job-description">Conception et administration d'infrastructures réseau sécurisées pour clients grands comptes.</p>
+                    <div class="job-footer">
+                        <span class="job-date">Publié il y a 1 semaine</span>
+                        <button class="btn-apply" onclick="applyJob('Ingénieur Réseaux')">Postuler</button>
+                    </div>
+                </div>
+
+                <div class="job-card" data-location="paris" data-type="fulltime">
+                    <div class="job-header">
+                        <h3 class="job-title">Data Engineer</h3>
+                        <span class="job-location">📍 Paris</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag fulltime">CDI</span>
+                        <span class="job-tag">Spark</span>
+                        <span class="job-tag">Python</span>
+                        <span class="job-tag">Snowflake</span>
+                    </div>
+                    <p class="job-description">Concevez et maintenez des pipelines de données pour nos clients du secteur bancaire.</p>
+                    <div class="job-footer">
+                        <span class="job-date">Publié il y a 3 jours</span>
+                        <button class="btn-apply" onclick="applyJob('Data Engineer')">Postuler</button>
+                    </div>
+                </div>
+
+                <div class="job-card" data-location="toulouse" data-type="internship">
+                    <div class="job-header">
+                        <h3 class="job-title">Stage Cybersécurité - Pentest</h3>
+                        <span class="job-location">📍 Toulouse</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag internship">Stage</span>
+                        <span class="job-tag">Pentest</span>
+                        <span class="job-tag">Kali</span>
+                        <span class="job-tag">OWASP</span>
+                    </div>
+                    <p class="job-description">Stage de 6 mois en tests d'intrusion et audit de sécurité. Formation aux outils et méthodologies.</p>
+                    <div class="job-footer">
+                        <span class="job-date">Publié il y a 1 semaine</span>
+                        <button class="btn-apply" onclick="applyJob('Stage Pentest')">Postuler</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="candidature-spontanee">
+            <div class="container">
+                <h2>Vous ne trouvez pas votre bonheur ?</h2>
+                <p>Envoyez-nous une candidature spontanée, nous sommes toujours à la recherche de talents passionnés.</p>
+                <a href="contact.html" class="cta-btn">Nous contacter</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 Groupe La Passerelle - ESN. Tous droits réservés.</p>
+                <p>Quartier Tié-Tié, Pointe-Noire, Congo-Brazzaville</p>
+                <p>Tél : 055258732</p>
+                <p>Email : tatybeni@gmail.com</p>
+            </div>
+            <div class="social">
+                <a href="#" aria-label="LinkedIn">
+                    <img src="assets/icons/linkedin.svg" alt="LinkedIn">
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <img src="assets/icons/twitter.svg" alt="Twitter">
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <img src="assets/icons/github.svg" alt="GitHub">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.className = savedTheme;
+            darkModeBtn.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
+        }
+
+        darkModeBtn.addEventListener('click', () => {
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                darkModeBtn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                darkModeBtn.textContent = '🌙';
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+
+        // Burger menu
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navbar = document.getElementById('navbar');
+
+        burgerBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            burgerBtn.classList.toggle('active');
+            const expanded = burgerBtn.getAttribute('aria-expanded') === 'true' ? false : true;
+            burgerBtn.setAttribute('aria-expanded', expanded);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target) && !burgerBtn.contains(e.target)) {
+                navbar.classList.remove('active');
+                burgerBtn.classList.remove('active');
+                burgerBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Gestion des dropdowns pour mobile
+        const dropdowns = document.querySelectorAll('.dropdown');
+        const isMobile = () => window.innerWidth <= 768;
+
+        function setupDropdowns() {
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('.dropdown-toggle');
+
+                // Supprimer les anciens événements
+                link.replaceWith(link.cloneNode(true));
+                const newLink = dropdown.querySelector('.dropdown-toggle');
+
+                if (isMobile()) {
+                    // Mode mobile : clic pour ouvrir/fermer
+                    newLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Fermer les autres dropdowns
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                d.classList.remove('active');
+                            }
+                        });
+
+                        dropdown.classList.toggle('active');
+                    });
+                } else {
+                    // Mode desktop : hover géré par CSS, pas d'action au clic
+                    newLink.addEventListener('click', (e) => {
+                        e.preventDefault(); // Empêcher la navigation
+                    });
+                }
+            });
+        }
+
+        // Initial setup
+        setupDropdowns();
+
+        // Reconfigure au redimensionnement
+        window.addEventListener('resize', () => {
+            setupDropdowns();
+            // En mode desktop, s'assurer que tous les dropdowns sont fermés
+            if (!isMobile()) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Fermer les dropdowns si on clique ailleurs
+        document.addEventListener('click', (e) => {
+            if (isMobile() && !e.target.closest('.dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Filtrage des offres d'emploi
+        const searchInput = document.getElementById('searchInput');
+        const locationFilter = document.getElementById('locationFilter');
+        const typeFilter = document.getElementById('typeFilter');
+        const jobsGrid = document.getElementById('jobsGrid');
+        const jobCards = document.querySelectorAll('.job-card');
+
+        function filterJobs() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const locationValue = locationFilter.value;
+            const typeValue = typeFilter.value;
+
+            jobCards.forEach(card => {
+                const title = card.querySelector('.job-title').textContent.toLowerCase();
+                const description = card.querySelector('.job-description').textContent.toLowerCase();
+                const location = card.dataset.location;
+                const type = card.dataset.type;
+
+                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+                const matchesLocation = locationValue === 'all' || location === locationValue;
+                const matchesType = typeValue === 'all' || type === typeValue;
+
+                if (matchesSearch && matchesLocation && matchesType) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        searchInput.addEventListener('input', filterJobs);
+        locationFilter.addEventListener('change', filterJobs);
+        typeFilter.addEventListener('change', filterJobs);
+
+        // Simulation de candidature
+        window.applyJob = function(jobTitle) {
+            alert(`Merci de votre intérêt pour le poste de ${jobTitle} !\nVous allez être redirigé vers le formulaire de candidature.`);
+            // Redirection vers la page contact avec pré-remplissage
+            window.location.href = `contact.html?sujet=candidature&poste=${encodeURIComponent(jobTitle)}`;
+        };
+
+        // Animation des cartes au scroll
+        const cards = document.querySelectorAll('.job-card, .benefit-card');
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>

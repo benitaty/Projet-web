@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Bases de données - Groupe La Passerelle</title>
+    <meta name="description" content="Expertise en Bases de données, Data Engineering, SQL, NoSQL et Optimisation">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <style>
+        /* Reset & Base */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Light mode (default) */
+        
+        body.light-mode {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        body.light-mode .header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-mode footer {
+            background-color: #2c3e50;
+            color: #fff;
+        }
+        
+        body.light-mode .card,
+        body.light-mode .expertise-card,
+        body.light-mode .tech-card,
+        body.light-mode .db-card {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-mode .social a img {
+            filter: brightness(0) invert(1);
+        }
+        
+        body.light-mode .stat-number {
+            color: #ff7f3f;
+        }
+        
+        body.light-mode .badge {
+            background: linear-gradient(135deg, #ff7f3f, #ffb88c);
+            color: #fff;
+        }
+        /* Dark mode */
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .header {
+            background-color: #2d2d2d;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.dark-mode footer {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.dark-mode .card,
+        body.dark-mode .expertise-card,
+        body.dark-mode .tech-card,
+        body.dark-mode .db-card {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .navbar ul li a {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .navbar ul li a:hover,
+        body.dark-mode .navbar ul li a.active {
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .submenu {
+            background-color: #2d2d2d;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark-mode .submenu li a {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .submenu li a:hover {
+            background-color: #3d3d3d;
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .social a img {
+            filter: brightness(0) invert(1);
+        }
+        
+        body.dark-mode #darkModeBtn {
+            background-color: #ff7f3f;
+            color: #fff;
+        }
+        
+        body.dark-mode .stat-number {
+            color: #ff7f3f;
+        }
+        
+        body.dark-mode .badge {
+            background: linear-gradient(135deg, #ff7f3f, #ffb88c);
+            color: #fff;
+        }
+        
+        body.dark-mode .tech-tag {
+            background-color: #404040;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .sql-highlight {
+            background-color: #404040;
+            color: #ff7f3f;
+        }
+        /* Header */
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo img {
+            max-height: 60px;
+            width: auto;
+        }
+        
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+        
+        .burger span {
+            width: 30px;
+            height: 3px;
+            background-color: #ff7f3f;
+            border-radius: 10px;
+            transition: all 0.3s linear;
+        }
+        
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        .navbar ul li {
+            position: relative;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            display: block;
+        }
+        
+        .navbar ul li a:hover,
+        .navbar ul li a.active {
+            color: #ff7f3f;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 0.5rem 0;
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        
+        .dropdown:hover>.submenu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .submenu li {
+            width: 100%;
+        }
+        
+        .submenu li a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            white-space: nowrap;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .submenu li a:hover {
+            background-color: #f0f0f0;
+            color: #ff7f3f;
+        }
+        
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: transparent;
+        }
+        
+        .dark-mode-toggle {
+            margin-left: 1rem;
+        }
+        
+        #darkModeBtn {
+            background-color: #ff7f3f;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #darkModeBtn:hover {
+            transform: scale(1.1);
+        }
+        /* Main content */
+        
+        main {
+            min-height: calc(100vh - 200px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #e63946, #f4a261);
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><rect x="10" y="10" width="80" height="80" stroke="white" fill="none" stroke-width="2"/><line x1="10" y1="30" x2="90" y2="30" stroke="white" stroke-width="2"/><line x1="10" y1="50" x2="90" y2="50" stroke="white" stroke-width="2"/><line x1="10" y1="70" x2="90" y2="70" stroke="white" stroke-width="2"/><line x1="30" y1="10" x2="30" y2="90" stroke="white" stroke-width="2"/><line x1="50" y1="10" x2="50" y2="90" stroke="white" stroke-width="2"/><line x1="70" y1="10" x2="70" y2="90" stroke="white" stroke-width="2"/></svg>');
+            background-size: 100px 100px;
+            animation: tableMove 15s linear infinite;
+        }
+        
+        @keyframes tableMove {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100px 100px;
+            }
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            animation: fadeInUp 0.8s ease;
+        }
+        /* Introduction */
+        
+        .expertise-intro {
+            text-align: center;
+            padding: 4rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .expertise-intro h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .expertise-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        /* Statistiques */
+        
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+        }
+        /* Grille des expertises */
+        
+        .expertises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5% 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .expertise-card {
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e63946, #f4a261);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .expertise-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .expertise-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .expertise-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .expertise-card h3 {
+            color: #ff7f3f;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .expertise-card p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background-color: #e9ecef;
+            color: #333;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        body.dark-mode .tech-tag {
+            background-color: #404040;
+            color: #f0f0f0;
+        }
+        /* Comparaison SQL/NoSQL */
+        
+        .db-comparison {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        body.dark-mode .db-comparison {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+        
+        .db-comparison h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .db-card {
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+        
+        .db-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .db-card.sql h3 {
+            color: #e63946;
+        }
+        
+        .db-card.nosql h3 {
+            color: #f4a261;
+        }
+        
+        .db-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .db-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .db-card li {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .db-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff7f3f;
+            font-weight: bold;
+        }
+        
+        .db-example {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(255, 127, 63, 0.1);
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        /* Technologies */
+        
+        .tech-section {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .tech-section h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .tech-card {
+            padding: 2rem 1rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tech-card img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+        
+        .tech-card h3 {
+            font-size: 1rem;
+            margin: 0;
+        }
+        /* Architecture */
+        
+        .architecture-section {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .architecture-section h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .architecture-svg {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        /* Requête SQL animée */
+        
+        .sql-demo {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        body.dark-mode .sql-demo {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+        
+        .sql-demo h2 {
+            color: #ff7f3f;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .sql-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 10px;
+            background: #1e1e1e;
+            color: #fff;
+            text-align: left;
+            font-family: monospace;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sql-keyword {
+            color: #ff7f3f;
+            font-weight: bold;
+        }
+        
+        .sql-table {
+            color: #4cc9f0;
+        }
+        
+        .sql-column {
+            color: #f4a261;
+        }
+        
+        .sql-value {
+            color: #2ecc71;
+        }
+        
+        .sql-comment {
+            color: #6c757d;
+        }
+        
+        .sql-line {
+            margin: 0.5rem 0;
+            animation: typing 3s steps(40, end);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        /* CTA */
+        
+        .cta-section {
+            background: linear-gradient(135deg, #e63946, #f4a261);
+            color: #fff;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #e63946;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+        }
+        /* Footer */
+        
+        footer {
+            padding: 3rem 5%;
+            margin-top: 3rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-info {
+            text-align: left;
+        }
+        
+        .footer-info p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .footer-info p:first-child {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .social {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social a {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .social a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .social a img {
+            width: 28px;
+            height: 28px;
+            transition: filter 0.3s ease;
+        }
+        /* Animations */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Badge */
+        
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .burger {
+                display: flex;
+            }
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 5rem 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            body.dark-mode .navbar {
+                background-color: #2d2d2d;
+            }
+            .navbar.active {
+                right: 0;
+            }
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+            }
+            .navbar ul li {
+                width: 100%;
+            }
+            .dropdown {
+                width: 100%;
+            }
+            .submenu {
+                position: static;
+                display: none;
+                background-color: transparent;
+                box-shadow: none;
+                padding-left: 1rem;
+                opacity: 1;
+                visibility: visible;
+                transition: none;
+            }
+            .dropdown.active>.submenu {
+                display: block;
+            }
+            .dropdown:hover>.submenu {
+                display: none;
+            }
+            .dropdown.active>.submenu {
+                display: block;
+            }
+            .submenu li a {
+                padding: 0.5rem 1rem;
+            }
+            .dark-mode-toggle {
+                margin-top: 2rem;
+            }
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .stats-container {
+                gap: 1.5rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .expertises-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .sql-line {
+                white-space: normal;
+                animation: none;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-info {
+                text-align: center;
+            }
+            .social {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 3rem 0;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .page-header .subtitle {
+                font-size: 1rem;
+            }
+            .expertise-intro h2 {
+                font-size: 1.5rem;
+            }
+            .expertise-intro p {
+                font-size: 1rem;
+            }
+            .stats-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            .expertise-card {
+                padding: 1.5rem;
+            }
+            .expertise-icon {
+                font-size: 2.5rem;
+            }
+            .expertise-card h3 {
+                font-size: 1.2rem;
+            }
+            .db-card {
+                padding: 1.5rem;
+            }
+            .sql-container {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+            .footer-info p {
+                font-size: 0.9rem;
+            }
+            .social a img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo.png" alt="Groupe La Passerelle - Retour accueil">
+            </a>
+        </div>
+
+        <button class="burger" id="burgerBtn" aria-label="Menu principal" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="navbar" id="navbar" aria-label="Navigation principale">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Présentation</a>
+                    <ul class="submenu" aria-label="Sous-menu présentation">
+                        <li><a href="historique.html">Notre Histoire</a></li>
+                        <li><a href="equipe.html">L'équipe</a></li>
+                        <li><a href="valeurs.html">Nos valeurs</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle active" aria-haspopup="true" aria-expanded="false">Expertises</a>
+                    <ul class="submenu" aria-label="Sous-menu expertises">
+                        <li><a href="expertise-data.html">Analyse de données</a></li>
+                        <li><a href="expertise-reseaux.html">Réseaux & Télécoms</a></li>
+                        <li><a href="expertise-bdd.html" class="active">Bases de données</a></li>
+                        <li><a href="expertise-dev.html">Développement</a></li>
+                        <li><a href="expertise-securite.html">Sécurité & Audit</a></li>
+                    </ul>
+                </li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="recrutement.html">Recrutement</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="dark-mode-toggle">
+                <button id="darkModeBtn" aria-label="Activer le mode sombre">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Bases de données</h1>
+                <p class="subtitle">Maîtrisez vos données avec des architectures robustes et performantes</p>
+            </div>
+        </section>
+
+        <section class="expertise-intro">
+            <div class="container">
+                <h2>L'excellence en gestion de données</h2>
+                <p>De la conception du modèle de données à l'optimisation des requêtes, en passant par l'administration de bases SQL et NoSQL, nos experts vous accompagnent pour tirer le meilleur parti de vos données.</p>
+
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">SGBD maîtrisés</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Projets BDD</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Supervision</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="expertises-grid">
+            <div class="expertise-card">
+                <div class="expertise-icon">🔧</div>
+                <h3>Administration SQL</h3>
+                <p>Installation, configuration, optimisation et maintenance de vos bases de données relationnelles.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">SQL Server</span>
+                    <span class="tech-tag">Oracle</span>
+                </div>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🍃</div>
+                <h3>Bases NoSQL</h3>
+                <p>Implémentation de solutions NoSQL adaptées à vos besoins de scalabilité et de flexibilité.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Cassandra</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">Elasticsearch</span>
+                </div>
+                <span class="badge">Scalabilité</span>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">⚡</div>
+                <h3>Optimisation & Tuning</h3>
+                <p>Analyse des performances, indexation, réécriture de requêtes et paramétrage pour des temps de réponse optimaux.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">EXPLAIN</span>
+                    <span class="tech-tag">Index</span>
+                    <span class="tech-tag">Partitioning</span>
+                    <span class="tech-tag">Sharding</span>
+                </div>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🔄</div>
+                <h3>Haute disponibilité</h3>
+                <p>Mise en place de clusters, réplication, backup et recovery pour garantir la continuité de service.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">Replication</span>
+                    <span class="tech-tag">Clustering</span>
+                    <span class="tech-tag">Backup</span>
+                    <span class="tech-tag">PITR</span>
+                </div>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">📊</div>
+                <h3>Data Warehousing</h3>
+                <p>Conception d'entrepôts de données et de solutions décisionnelles pour l'analyse et le reporting.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">Snowflake</span>
+                    <span class="tech-tag">BigQuery</span>
+                    <span class="tech-tag">Redshift</span>
+                    <span class="tech-tag">Databricks</span>
+                </div>
+            </div>
+
+            <div class="expertise-card">
+                <div class="expertise-icon">🛡️</div>
+                <h3>Sécurité des données</h3>
+                <p>Chiffrement, contrôle d'accès, audit et conformité (RGPD, ISO 27001) pour protéger vos données.</p>
+                <div class="expertise-tags">
+                    <span class="tech-tag">Encryption</span>
+                    <span class="tech-tag">RBAC</span>
+                    <span class="tech-tag">Audit</span>
+                    <span class="tech-tag">GDPR</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="db-comparison">
+            <h2>SQL vs NoSQL : le choix adapté à vos besoins</h2>
+            <div class="comparison-grid">
+                <div class="db-card sql">
+                    <h3>📊 SQL</h3>
+                    <ul>
+                        <li>Schéma rigide et structuré</li>
+                        <li>ACID transactions</li>
+                        <li>Relations complexes</li>
+                        <li>Requêtes complexes (JOIN)</li>
+                        <li>Idéal pour les applications transactionnelles</li>
+                    </ul>
+                    <div class="db-example">
+                        SELECT * FROM users<br> WHERE age > 18<br> ORDER BY name;
+                    </div>
+                </div>
+                <div class="db-card nosql">
+                    <h3>📦 NoSQL</h3>
+                    <ul>
+                        <li>Schéma flexible</li>
+                        <li>BASE (Eventual consistency)</li>
+                        <li>Scalabilité horizontale</li>
+                        <li>Données hiérarchiques</li>
+                        <li>Idéal pour big data et temps réel</li>
+                    </ul>
+                    <div class="db-example">
+                        db.users.find({<br> &nbsp;&nbsp;age: {$gt: 18}<br> }).sort({name: 1})
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tech-section">
+            <h2>Nos technologies</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                    <h3>PostgreSQL</h3>
+                </div>
+                <div class="tech-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                    <h3>MySQL</h3>
+                </div>
+                <div class="tech-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+                    <h3>MongoDB</h3>
+                </div>
+                <div class="tech-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis">
+                    <h3>Redis</h3>
+                </div>
+                <div class="tech-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle">
+                    <h3>Oracle</h3>
+                </div>
+                <div class="tech-card">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg" alt="Elasticsearch">
+                    <h3>Elasticsearch</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="sql-demo">
+            <h2>Exemple d'optimisation</h2>
+            <div class="sql-container">
+                <div class="sql-line"><span class="sql-keyword">EXPLAIN</span> <span class="sql-keyword">ANALYZE</span></div>
+                <div class="sql-line"><span class="sql-keyword">SELECT</span> </div>
+                <div class="sql-line"> u.<span class="sql-column">name</span>,</div>
+                <div class="sql-line"> u.<span class="sql-column">email</span>,</div>
+                <div class="sql-line"> <span class="sql-keyword">COUNT</span>(o.<span class="sql-column">id</span>) <span class="sql-keyword">as</span> orders_count</div>
+                <div class="sql-line"><span class="sql-keyword">FROM</span> <span class="sql-table">users</span> u</div>
+                <div class="sql-line"><span class="sql-keyword">LEFT JOIN</span> <span class="sql-table">orders</span> o <span class="sql-keyword">ON</span> u.<span class="sql-column">id</span> = o.<span class="sql-column">user_id</span></div>
+                <div class="sql-line"><span class="sql-keyword">WHERE</span> u.<span class="sql-column">created_at</span> > <span class="sql-value">'2024-01-01'</span></div>
+                <div class="sql-line"><span class="sql-keyword">GROUP BY</span> u.<span class="sql-column">id</span></div>
+                <div class="sql-line"><span class="sql-keyword">HAVING</span> <span class="sql-keyword">COUNT</span>(o.<span class="sql-column">id</span>) > <span class="sql-value">5</span>;</div>
+                <div class="sql-line sql-comment">-- Optimisation : index sur created_at</div>
+                <div class="sql-line sql-comment">-- Résultat : 45ms → 12ms</div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Optimisez vos performances données</h2>
+            <p>Audit gratuit de vos bases de données et recommandations d'optimisation</p>
+            <a href="contact.html" class="cta-btn">Demander un audit</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 Groupe La Passerelle - ESN. Tous droits réservés.</p>
+                <p>Quartier Tié-Tié, Pointe-Noire, Congo-Brazzaville</p>
+                <p>Tél : 055258732</p>
+                <p>Email : tatybeni@gmail.com</p>
+            </div>
+            <div class="social">
+                <a href="#" aria-label="LinkedIn">
+                    <img src="assets/icons/linkedin.svg" alt="LinkedIn">
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <img src="assets/icons/twitter.svg" alt="Twitter">
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <img src="assets/icons/github.svg" alt="GitHub">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.className = savedTheme;
+            darkModeBtn.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
+        }
+
+        darkModeBtn.addEventListener('click', () => {
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                darkModeBtn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                darkModeBtn.textContent = '🌙';
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+
+        // Burger menu
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navbar = document.getElementById('navbar');
+
+        burgerBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            burgerBtn.classList.toggle('active');
+            const expanded = burgerBtn.getAttribute('aria-expanded') === 'true' ? false : true;
+            burgerBtn.setAttribute('aria-expanded', expanded);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target) && !burgerBtn.contains(e.target)) {
+                navbar.classList.remove('active');
+                burgerBtn.classList.remove('active');
+                burgerBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Gestion des dropdowns pour mobile
+        const dropdowns = document.querySelectorAll('.dropdown');
+        const isMobile = () => window.innerWidth <= 768;
+
+        function setupDropdowns() {
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('.dropdown-toggle');
+
+                // Supprimer les anciens événements
+                link.replaceWith(link.cloneNode(true));
+                const newLink = dropdown.querySelector('.dropdown-toggle');
+
+                if (isMobile()) {
+                    // Mode mobile : clic pour ouvrir/fermer
+                    newLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Fermer les autres dropdowns
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                d.classList.remove('active');
+                            }
+                        });
+
+                        dropdown.classList.toggle('active');
+                    });
+                } else {
+                    // Mode desktop : hover géré par CSS, pas d'action au clic
+                    newLink.addEventListener('click', (e) => {
+                        e.preventDefault(); // Empêcher la navigation
+                    });
+                }
+            });
+        }
+
+        // Initial setup
+        setupDropdowns();
+
+        // Reconfigure au redimensionnement
+        window.addEventListener('resize', () => {
+            setupDropdowns();
+            // En mode desktop, s'assurer que tous les dropdowns sont fermés
+            if (!isMobile()) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Fermer les dropdowns si on clique ailleurs
+        document.addEventListener('click', (e) => {
+            if (isMobile() && !e.target.closest('.dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Animation des cartes au scroll
+        const cards = document.querySelectorAll('.expertise-card, .tech-card, .db-card');
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
+
+</html>
+
+</html>
